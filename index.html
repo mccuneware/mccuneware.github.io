@@ -1,0 +1,67 @@
+---
+layout: default
+---
+
+<div class="home">
+    <!-- Pagination links -->
+    <div class="pagination" style="text-align: center;">
+        {% if paginator.previous_page %}
+        <a href="{{ paginator.previous_page_path }}" class="previous">&lt;&lt;&nbsp;Previous&nbsp;&nbsp;</a>
+        {% else %}
+        <span class="previous">&lt;&lt;&nbsp;Previous&nbsp;&nbsp;</span>
+        {% endif %}
+        <span class="page_number ">Page: {{ paginator.page }} of {{ paginator.total_pages }}</span>
+        {% if paginator.next_page %}
+        <a href="{{ paginator.next_page_path }}" class="next">&nbsp;&nbsp;Next >></a>
+        {% else %}
+        <span class="next ">&nbsp;&nbsp;Next >></span>
+        {% endif %}
+    </div>
+    <hr/>
+    <ul class="post-list">
+        {% for post in paginator.posts %}
+        <li>
+            
+            <h2>
+                <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+            </h2>
+            <h3><span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span></h3>
+
+            <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+                
+                <header class="post-header">
+                    <h1 class="post-title" itemprop="name headline">{{ page.title | escape }}</h1>
+                </header>
+                
+                <div class="post-content" itemprop="articleBody">
+                    {{ post.content }}
+                </div>
+            </article>
+            <hr/>
+
+        </li>
+        {% endfor %}
+    </ul>
+    
+    <p>
+        <!-- Pagination links -->
+        <div class="pagination" style="text-align: center;">
+            {% if paginator.previous_page %}
+            <a href="{{ paginator.previous_page_path }}" class="previous">&lt;&lt;&nbsp;Previous&nbsp;&nbsp;</a>
+            {% else %}
+            <span class="previous">&lt;&lt;&nbsp;Previous&nbsp;&nbsp;</span>
+            {% endif %}
+            <span class="page_number ">Page: {{ paginator.page }} of {{ paginator.total_pages }}</span>
+            {% if paginator.next_page %}
+            <a href="{{ paginator.next_page_path }}" class="next">&nbsp;&nbsp;Next >></a>
+            {% else %}
+            <span class="next ">&nbsp;&nbsp;Next >></span>
+            {% endif %}
+        </div>
+        <!-- RSS -->
+        <br/>
+        <div class="rss-subscribe" style="text-align: center;">subscribe 
+            <a href="{{ "/feed.xml" | relative_url}}">via RSS</a>
+        </div>
+    </p>
+</div>
